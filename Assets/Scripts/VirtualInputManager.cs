@@ -23,6 +23,7 @@ namespace base_movement
 
         public bool moveRight;
         public bool moveLeft;
+        public bool jump;
     }
 }
 
