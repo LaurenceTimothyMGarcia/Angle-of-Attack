@@ -7,6 +7,8 @@ namespace base_movement
     public class TestPlayer : MonoBehaviour
     {
         public float movementSpeed;
+        public float dashSpeed;
+        public float dashTime;
         
         //jump related
         public float jumpAmount;
@@ -48,8 +50,21 @@ namespace base_movement
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
 
+            //Dash
+            if (VirtualInputManager.Instance.dash)
+            {
+                if (rb.velocity.z > 0)
+                {
+                    rb.AddForce(Vector3.forward * dashSpeed, ForceMode.VelocityChange);
+                }
+                else if (rb.velocity.z < 0)
+                {
+                    rb.AddForce(Vector3.back * dashSpeed, ForceMode.VelocityChange);
+                }
+            }
+
             //Jump button
-            Vector3 gravity = globalGravity * gravityScale * Vector3.up;
+            //Vector3 gravity = globalGravity * gravityScale * Vector3.up;
 
             //rb.AddForce(gravity, ForceMode.Acceleration);
             if (VirtualInputManager.Instance.jump)

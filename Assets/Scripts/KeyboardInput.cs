@@ -26,6 +26,15 @@ namespace base_movement
             {
                 VirtualInputManager.Instance.moveLeft = false;
             }
+            //Run
+            if (Input.GetKeyDown(KeyCode.LeftShift))
+            {
+                VirtualInputManager.Instance.run = true;
+            }
+            else
+            {
+                VirtualInputManager.Instance.run = false;
+            }
 
             //Jump
             if (Input.GetKeyDown(KeyCode.W))
