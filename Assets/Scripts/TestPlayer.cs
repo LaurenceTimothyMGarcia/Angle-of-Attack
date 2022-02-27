@@ -45,12 +45,6 @@ namespace base_movement
             remainingJumps = jumpCount;
         }
 
-        void OnCollisionStay()
-        {
-            isGrounded = true;
-            Debug.Log("Grounded");
-        }
-
         void Update()
         {
             //if both left and right pressed at same time
@@ -149,6 +143,13 @@ namespace base_movement
             {
                 gravity = globalGravity * fallingGravityScale * Vector3.up;
             }*/
+        }
+
+        //Checks if player is on ground
+        void OnCollisionStay()
+        {
+            isGrounded = true;
+            Debug.Log("Grounded");
         }
     }
 }
