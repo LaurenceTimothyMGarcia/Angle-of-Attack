@@ -36,6 +36,16 @@ namespace base_movement
             {
                 VirtualInputManager.Instance.jump = false;
             }
+
+            //Dash
+            if (Input.GetKey(KeyCode.Space))
+            {
+                VirtualInputManager.Instance.dash = true;
+            }
+            else
+            {
+                VirtualInputManager.Instance.dash = false;
+            }
         }
     }
 }
