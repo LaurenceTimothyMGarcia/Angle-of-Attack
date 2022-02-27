@@ -440,8 +440,8 @@ MonoBehaviour:
   dashCooldown: 1
   dashLength: 0.5
   jumpAmount: 10
-  gravityScale: 1
-  fallingGravityScale: 50
+  jumpCount: 1
+  isGrounded: 0
   rb: {fileID: 1424655083}
 --- !u!54 &1424655083
 Rigidbody:

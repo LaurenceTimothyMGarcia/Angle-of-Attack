@@ -21,9 +21,15 @@ namespace base_movement
         
         //Jump related
         public float jumpAmount;
+        public int jumpCount;   //Extra Jumps
+        private int remainingJumps;
+        public bool isGrounded;
+
+        /*** Testing Gravity changes but might still use later
         public float gravityScale;
         public float fallingGravityScale;   //changes the scale so its less floaty
         public static float globalGravity = -9.81f;
+        ***/
 
         public Rigidbody rb;
 
@@ -36,6 +42,13 @@ namespace base_movement
         void Start()
         {
             activeMovementSpeed = movementSpeed;
+            remainingJumps = jumpCount;
+        }
+
+        void OnCollisionStay()
+        {
+            isGrounded = true;
+            Debug.Log("Grounded");
         }
 
         void Update()
@@ -46,6 +59,7 @@ namespace base_movement
                 return;
             }
 
+            /***    Movement Horizontal    ***/
             if (VirtualInputManager.Instance.moveRight)
             {
                 //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
@@ -64,7 +78,8 @@ namespace base_movement
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
 
-            //Dash
+
+            /***    Dash    ***/
             if (VirtualInputManager.Instance.dash)
             {
                 if (dashCoolCounter <= 0 && dashCounter <= 0)
@@ -101,15 +116,31 @@ namespace base_movement
                 dashCoolCounter -= Time.deltaTime;
             }
 
-            //Jump button
-            //Vector3 gravity = globalGravity * gravityScale * Vector3.up;
 
-            //rb.AddForce(gravity, ForceMode.Acceleration);
+            /***    Jumping     ***/
             if (VirtualInputManager.Instance.jump)
             {
-                rb.AddForce(Vector3.up * jumpAmount, ForceMode.Impulse);
+                if (remainingJumps > 0)
+                {
+                    rb.AddForce(Vector3.up * jumpAmount, ForceMode.Impulse);
+                    remainingJumps--;
+                    isGrounded = false;
+                }
+
+                Debug.Log(remainingJumps);
+            }
+
+            if (isGrounded)
+            {
+                remainingJumps = jumpCount;
             }
             
+
+
+            
+            //Testing out gravity changes here but did not work as planned so scrapping for now
+            //Vector3 gravity = globalGravity * gravityScale * Vector3.up;
+            //rb.AddForce(gravity, ForceMode.Acceleration);
             /*if (rb.velocity.y >= 0)
             {
                 gravity = globalGravity * gravityScale * Vector3.up;
