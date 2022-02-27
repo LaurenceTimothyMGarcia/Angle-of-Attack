@@ -19,10 +19,10 @@ namespace base_movement
         //happens on start
         void OnEnable()
         {
-            rb.useGravity = false;  //removes current gravity system in unity to be replaced in fixedUpdate function
+            //rb.useGravity = false;  //removes current gravity system in unity to be replaced in fixedUpdate function
         }
 
-        void FixedUpdate()
+        void Update()
         {
             //if both left and right pressed at same time
             if (VirtualInputManager.Instance.moveRight && VirtualInputManager.Instance.moveLeft)
@@ -45,19 +45,20 @@ namespace base_movement
             //Jump button
             Vector3 gravity = globalGravity * gravityScale * Vector3.up;
 
-            rb.AddForce(gravity, ForceMode.Acceleration);
+            //rb.AddForce(gravity, ForceMode.Acceleration);
             if (VirtualInputManager.Instance.jump)
             {
                 rb.AddForce(Vector3.up * jumpAmount, ForceMode.Impulse);
             }
-            if (rb.velocity.y >= 0)
+            
+            /*if (rb.velocity.y >= 0)
             {
                 gravity = globalGravity * gravityScale * Vector3.up;
             }
             else if (rb.velocity.y < 0)
             {
                 gravity = globalGravity * fallingGravityScale * Vector3.up;
-            }
+            }*/
         }
     }
 }
