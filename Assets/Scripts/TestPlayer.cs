@@ -11,23 +11,25 @@ namespace base_movement
         private float previousMovementSpeed;
 
         //Dash related
-        public float dashSpeed;
-        public float dashTime;
-        public float dashCooldown;
-        public float dashLength;
+        public float dashSpeed;     //how fast is dash
+        public float dashTime;      //how long dash last for
+        public float dashCooldown;  //cooldown of dash
+        public float dashLength;    //how long does dash travel
 
-        private float dashCounter;
-        private float dashCoolCounter;
+        private float dashTimeCounter;//dash time counter
+        private float dashCoolCounter;//current cooldown of dash
         
         //Jump related
         public float jumpAmount;
         public int jumpCount;   //Extra Jumps
+        public float fallingGravityScale;
         private int remainingJumps;
-        public bool isGrounded;
+        private bool isGrounded;
+        
 
         /*** Testing Gravity changes but might still use later
         public float gravityScale;
-        public float fallingGravityScale;   //changes the scale so its less floaty
+        //changes the scale so its less floaty
         public static float globalGravity = -9.81f;
         ***/
 
@@ -43,6 +45,7 @@ namespace base_movement
         {
             activeMovementSpeed = movementSpeed;
             remainingJumps = jumpCount;
+            dashTimeCounter = dashTime;
         }
 
         void Update()
@@ -74,7 +77,7 @@ namespace base_movement
 
 
             /***    Dash    ***/
-            if (VirtualInputManager.Instance.dash)
+            /*if (VirtualInputManager.Instance.dash)
             {
                 if (dashCoolCounter <= 0 && dashCounter <= 0)
                 {
@@ -82,7 +85,7 @@ namespace base_movement
                     dashCounter = dashLength;
                 }
 
-                /***
+                
                 if (rb.velocity.z > 0)
                 {
                     rb.AddForce(Vector3.forward * dashSpeed, ForceMode.VelocityChange);
@@ -91,14 +94,14 @@ namespace base_movement
                 {
                     rb.AddForce(Vector3.back * dashSpeed, ForceMode.VelocityChange);
                 }
-                ***/
-            }
+                
+            }*/
 
-            if (dashCounter > 0)
+            /*if (dashTimeCounter > 0)
             {
-                dashCounter -= Time.deltaTime;
+                dashTimeCounter -= Time.deltaTime;
 
-                if (dashCounter <= 0)
+                if (dashTimeCounter <= 0)
                 {
                     activeMovementSpeed = movementSpeed;
                     dashCoolCounter = dashCooldown;
@@ -108,7 +111,7 @@ namespace base_movement
             if (dashCoolCounter > 0)
             {
                 dashCoolCounter -= Time.deltaTime;
-            }
+            }*/
 
 
             /***    Jumping     ***/
@@ -128,7 +131,12 @@ namespace base_movement
             {
                 remainingJumps = jumpCount;
             }
-            
+
+            //makes falling down faster than going up
+            if (rb.velocity.y < 0)
+            {
+                rb.AddForce(Vector3.down * fallingGravityScale, ForceMode.Acceleration);
+            }
 
 
             

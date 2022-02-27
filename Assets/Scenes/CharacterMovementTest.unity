@@ -533,13 +533,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  dashSpeed: 20
-  dashTime: 0.25
-  dashCooldown: 1
+  dashSpeed: 50
+  dashTime: 0.1
+  dashCooldown: 2
   dashLength: 0.5
   jumpAmount: 10
   jumpCount: 1
-  isGrounded: 0
+  fallingGravityScale: 20
   rb: {fileID: 1424655083}
 --- !u!54 &1424655083
 Rigidbody:
@@ -586,7 +586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9012516910876991546, guid: 1bb1efa6c727e004ab0e40df4fcf69cd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -15
       objectReference: {fileID: 0}
     - target: {fileID: 9012516910876991546, guid: 1bb1efa6c727e004ab0e40df4fcf69cd, type: 3}
       propertyPath: m_LocalRotation.w
