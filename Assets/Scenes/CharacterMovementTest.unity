@@ -434,7 +434,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6551ae5234bbb5b439e25091977d4871, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 15
+  movementSpeed: 10
   jumpAmount: 10
   gravityScale: 1
   fallingGravityScale: 50

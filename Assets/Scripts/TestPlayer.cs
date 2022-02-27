@@ -32,13 +32,19 @@ namespace base_movement
 
             if (VirtualInputManager.Instance.moveRight)
             {
-                this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+                //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+
+                //changed to force
+                rb.AddForce(Vector3.forward * movementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
 
             if (VirtualInputManager.Instance.moveLeft)
             {
-                this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+                //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
+
+                //changed to force
+                rb.AddForce(Vector3.back * movementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
 
