@@ -8,6 +8,7 @@ namespace base_movement
     {
         public float movementSpeed;
         private float activeMovementSpeed;
+        private float previousMovementSpeed;
 
         //Dash related
         public float dashSpeed;

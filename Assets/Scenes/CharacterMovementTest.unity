@@ -435,7 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  dashSpeed: 10
+  dashSpeed: 20
   dashTime: 0.25
   dashCooldown: 1
   dashLength: 0.5
