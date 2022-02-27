@@ -7,10 +7,18 @@ namespace base_movement
     public class TestPlayer : MonoBehaviour
     {
         public float movementSpeed;
+        private float activeMovementSpeed;
+
+        //Dash related
         public float dashSpeed;
         public float dashTime;
+        public float dashCooldown;
+        public float dashLength;
+
+        private float dashCounter;
+        private float dashCoolCounter;
         
-        //jump related
+        //Jump related
         public float jumpAmount;
         public float gravityScale;
         public float fallingGravityScale;   //changes the scale so its less floaty
@@ -22,6 +30,11 @@ namespace base_movement
         void OnEnable()
         {
             //rb.useGravity = false;  //removes current gravity system in unity to be replaced in fixedUpdate function
+        }
+
+        void Start()
+        {
+            activeMovementSpeed = movementSpeed;
         }
 
         void Update()
@@ -37,7 +50,7 @@ namespace base_movement
                 //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
 
                 //changed to force
-                rb.AddForce(Vector3.forward * movementSpeed);
+                rb.AddForce(Vector3.forward * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
 
@@ -46,13 +59,20 @@ namespace base_movement
                 //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
 
                 //changed to force
-                rb.AddForce(Vector3.back * movementSpeed);
+                rb.AddForce(Vector3.back * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
 
             //Dash
             if (VirtualInputManager.Instance.dash)
             {
+                if (dashCoolCounter <= 0 && dashCounter <= 0)
+                {
+                    activeMovementSpeed = dashSpeed;
+                    dashCounter = dashLength;
+                }
+
+                /***
                 if (rb.velocity.z > 0)
                 {
                     rb.AddForce(Vector3.forward * dashSpeed, ForceMode.VelocityChange);
@@ -61,6 +81,23 @@ namespace base_movement
                 {
                     rb.AddForce(Vector3.back * dashSpeed, ForceMode.VelocityChange);
                 }
+                ***/
+            }
+
+            if (dashCounter > 0)
+            {
+                dashCounter -= Time.deltaTime;
+
+                if (dashCounter <= 0)
+                {
+                    activeMovementSpeed = movementSpeed;
+                    dashCoolCounter = dashCooldown;
+                }
+            }
+
+            if (dashCoolCounter > 0)
+            {
+                dashCoolCounter -= Time.deltaTime;
             }
 
             //Jump button

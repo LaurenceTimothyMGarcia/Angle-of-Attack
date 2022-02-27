@@ -435,7 +435,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-  dashSpeed: 5
+  dashSpeed: 10
+  dashTime: 0.25
+  dashCooldown: 1
+  dashLength: 0.5
   jumpAmount: 10
   gravityScale: 1
   fallingGravityScale: 50
