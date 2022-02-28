@@ -123,28 +123,16 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &53278977
+--- !u!1 &53278977 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 6239234769902388365, guid: 00fca4749894a49cd9a91935f2039ca7, type: 3}
   m_PrefabInstance: {fileID: 342453905}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 53278979}
-  - component: {fileID: 53278978}
-  m_Layer: 0
-  m_Name: KeyboardInput
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &53278978
+--- !u!114 &53278980
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 8914400841292132292, guid: 00fca4749894a49cd9a91935f2039ca7, type: 3}
-  m_PrefabInstance: {fileID: 342453905}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 53278977}
   m_Enabled: 1
@@ -152,43 +140,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdf974c85cebe4db3b3171e7025dd0f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &53278979
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 6239234769902388362, guid: 00fca4749894a49cd9a91935f2039ca7, type: 3}
-  m_PrefabInstance: {fileID: 342453905}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 53278977}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.71563864, y: 0.6899748, z: -1.1135962}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &270428890
+--- !u!1 &270428890 stripped
 GameObject:
-  m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 7397965507574521308, guid: dfc21696dafc448d3ba5f776c65512d5, type: 3}
   m_PrefabInstance: {fileID: 1398671620}
   m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 270428892}
-  - component: {fileID: 270428891}
-  m_Layer: 0
-  m_Name: VirtualInputManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &270428891
+--- !u!114 &270428893
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 7397965507574521250, guid: dfc21696dafc448d3ba5f776c65512d5, type: 3}
-  m_PrefabInstance: {fileID: 1398671620}
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270428890}
   m_Enabled: 1
@@ -201,21 +162,6 @@ MonoBehaviour:
   jump: 0
   run: 0
   dash: 0
---- !u!4 &270428892
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 7397965507574521251, guid: dfc21696dafc448d3ba5f776c65512d5, type: 3}
-  m_PrefabInstance: {fileID: 1398671620}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 270428890}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.71563864, y: 0.6899748, z: -1.1135962}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &342453905
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -271,7 +217,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: KeyboardInput
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 8914400841292132292, guid: 00fca4749894a49cd9a91935f2039ca7, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 00fca4749894a49cd9a91935f2039ca7, type: 3}
 --- !u!1 &462005353
 GameObject:
@@ -739,5 +686,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: VirtualInputManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7397965507574521250, guid: dfc21696dafc448d3ba5f776c65512d5, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: dfc21696dafc448d3ba5f776c65512d5, type: 3}
