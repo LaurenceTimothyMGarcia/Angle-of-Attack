@@ -13,7 +13,7 @@ public class DebugUI : MonoBehaviour
         {
             StatusLabels();
 
-            DirectionalMovement(new Vector3(0, 0, 0));
+            // DirectionalMovement(new Vector3(0, 0, 0));
         }
 
         GUILayout.EndArea();
@@ -35,16 +35,16 @@ public class DebugUI : MonoBehaviour
         GUILayout.Label("Mode: " + mode);
     }
 
-    static void DirectionalMovement(Vector3 direction, ForceMode mode = ForceMode.Force) {
-        if (GUILayout.Button(NetworkManager.Singleton.IsServer ? "Move" : "Request Position Change")) {
-            if (NetworkManager.Singleton.IsServer && !NetworkManager.Singleton.IsClient ) {
-                foreach (ulong uid in NetworkManager.Singleton.ConnectedClientsIds)
-                    NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(uid).GetComponent<base_movement.TestPlayer>().PlayerForce(direction, mode);
-            } else {
-                var playerObject = NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject();
-                var player = playerObject.GetComponent<base_movement.TestPlayer>();
-                player.PlayerForce(direction, mode);
-            }
-        }
-    }
+    // static void DirectionalMovement(Vector3 direction, ForceMode mode = ForceMode.Force) {
+    //     if (GUILayout.Button(NetworkManager.Singleton.IsServer ? "Move" : "Request Position Change")) {
+    //         if (NetworkManager.Singleton.IsServer && !NetworkManager.Singleton.IsClient ) {
+    //             foreach (ulong uid in NetworkManager.Singleton.ConnectedClientsIds)
+    //                 NetworkManager.Singleton.SpawnManager.GetPlayerNetworkObject(uid).GetComponent<base_movement.TestPlayer>().PlayerForce(direction, mode);
+    //         } else {
+    //             var playerObject = NetworkManager.Singleton.SpawnManager.GetLocalPlayerObject();
+    //             var player = playerObject.GetComponent<base_movement.TestPlayer>();
+    //             player.PlayerForce(direction, mode);
+    //         }
+    //     }
+    // }
 }

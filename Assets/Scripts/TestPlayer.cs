@@ -41,6 +41,9 @@ namespace base_movement
         void OnEnable()
         {
             //rb.useGravity = false;  //removes current gravity system in unity to be replaced in fixedUpdate function
+            if (VirtualInputManager.Instance.Self == null) {
+                VirtualInputManager.Instance.Self = this.gameObject;
+            }
         }
 
         void Start()
@@ -52,6 +55,9 @@ namespace base_movement
 
         void Update()
         {
+            if (VirtualInputManager.Instance.Self != this.gameObject) {
+                return;
+            }
             //if both left and right pressed at same time
             if (VirtualInputManager.Instance.moveRight && VirtualInputManager.Instance.moveLeft)
             {
