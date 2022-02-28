@@ -25,6 +25,8 @@ namespace base_movement
         public float fallingGravityScale;
         private int remainingJumps;
         private bool isGrounded;
+
+        // private const bool isServer = singleton.isServer;
         
 
         /*** Testing Gravity changes but might still use later
@@ -119,8 +121,6 @@ namespace base_movement
                     remainingJumps--;
                     isGrounded = false;
                 }
-
-                Debug.Log(remainingJumps);
             }
 
             if (isGrounded)
@@ -153,11 +153,10 @@ namespace base_movement
         void OnCollisionStay()
         {
             isGrounded = true;
-            Debug.Log("Grounded");
         }
 
         public void PlayerForce(Vector3 direction, ForceMode mode = ForceMode.Force) {
-            if(true) {
+            if(false) {
                 rb.AddForce(direction, mode);
             } else {
                 RequestPlayerForceServerRpc(direction, mode);
