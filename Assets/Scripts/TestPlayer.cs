@@ -156,7 +156,7 @@ namespace base_movement
         }
 
         public void PlayerForce(Vector3 direction, ForceMode mode = ForceMode.Force) {
-            if(false) {
+            if(NetworkManager.Singleton.IsServer) {
                 rb.AddForce(direction, mode);
             } else {
                 RequestPlayerForceServerRpc(direction, mode);
