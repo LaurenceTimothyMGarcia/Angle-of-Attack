@@ -412,8 +412,6 @@ Transform:
   m_Father: {fileID: 1424655077}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
-=======
 --- !u!1 &1219512495
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +510,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 180}
->>>>>>> Laurence
 --- !u!1 &1424655072 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9012516910876991525, guid: 1bb1efa6c727e004ab0e40df4fcf69cd, type: 3}
@@ -536,15 +533,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 10
-<<<<<<< HEAD
-  dashSpeed: 10
-  dashTime: 0.25
-  dashCooldown: 1
-  dashLength: 0.5
-  jumpAmount: 10
-  gravityScale: 1
-  fallingGravityScale: 50
-=======
   dashSpeed: 50
   dashTime: 0.1
   dashCooldown: 2
@@ -552,7 +540,6 @@ MonoBehaviour:
   jumpAmount: 10
   jumpCount: 1
   fallingGravityScale: 20
->>>>>>> Laurence
   rb: {fileID: 1424655083}
 --- !u!54 &1424655083
 Rigidbody:
@@ -599,11 +586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9012516910876991546, guid: 1bb1efa6c727e004ab0e40df4fcf69cd, type: 3}
       propertyPath: m_LocalPosition.z
-<<<<<<< HEAD
-      value: 0
-=======
       value: -15
->>>>>>> Laurence
       objectReference: {fileID: 0}
     - target: {fileID: 9012516910876991546, guid: 1bb1efa6c727e004ab0e40df4fcf69cd, type: 3}
       propertyPath: m_LocalRotation.w

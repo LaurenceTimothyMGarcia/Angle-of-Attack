@@ -17,6 +17,7 @@ namespace base_movement
 
         private float dashTimeCounter;//dash time counter
         private float dashCoolCounter;//current cooldown of dash
+        private Vector3 tempVelocity; //speed Before the dash
         
         //Jump related
         public float jumpAmount;
@@ -25,9 +26,6 @@ namespace base_movement
         private int remainingJumps;
         private bool isGrounded;
         
-
-        // Used to determine if player is playing from a client or a host
-        // const bool IS_SERVER = NetworkManager.Singleton.isServer;
 
         /*** Testing Gravity changes but might still use later
         public float gravityScale;
@@ -77,29 +75,25 @@ namespace base_movement
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
 
-
             /***    Dash    ***/
-            /*if (VirtualInputManager.Instance.dash)
+            // TODO-RAY Will need to make networked method for assigning rigidbody velocity
+            if (VirtualInputManager.Instance.dash && dashCoolCounter <= 0)
             {
-                if (dashCoolCounter <= 0 && dashCounter <= 0)
+                tempVelocity = rb.velocity;
+                
+                if (VirtualInputManager.Instance.moveRight)
                 {
-                    activeMovementSpeed = dashSpeed;
-                    dashCounter = dashLength;
+                    rb.velocity = Vector3.forward * dashSpeed;
+                }
+                else if (VirtualInputManager.Instance.moveLeft)
+                {
+                    rb.velocity = Vector3.back * dashSpeed;
                 }
 
-                
-                if (rb.velocity.z > 0)
-                {
-                    PlayerForce(Vector3.forward * dashSpeed, ForceMode.VelocityChange);
-                }
-                else if (rb.velocity.z < 0)
-                {
-                    PlayerForce(Vector3.back * dashSpeed, ForceMode.VelocityChange);
-                }
-                
-            }*/
+                dashCoolCounter = dashCooldown;
+            }
 
-            /*if (dashTimeCounter > 0)
+            if (dashTimeCounter > 0)
             {
                 dashTimeCounter -= Time.deltaTime;
 
@@ -113,7 +107,7 @@ namespace base_movement
             if (dashCoolCounter > 0)
             {
                 dashCoolCounter -= Time.deltaTime;
-            }*/
+            }
 
 
             /***    Jumping     ***/

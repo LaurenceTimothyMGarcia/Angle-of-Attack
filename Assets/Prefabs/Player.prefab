@@ -135,8 +135,8 @@ MonoBehaviour:
   dashCooldown: 1
   dashLength: 5
   jumpAmount: 10
-  gravityScale: 1
-  fallingGravityScale: 5
+  jumpCount: 0
+  fallingGravityScale: 1
   rb: {fileID: -7116775253761212426}
 --- !u!54 &-7116775253761212426
 Rigidbody:

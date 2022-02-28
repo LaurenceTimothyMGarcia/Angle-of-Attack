@@ -13,7 +13,7 @@ public class DebugUI : MonoBehaviour
         {
             StatusLabels();
 
-            SubmitNewPosition(new Vector3(0, 0, 0));
+            DirectionalMovement(new Vector3(0, 0, 0));
         }
 
         GUILayout.EndArea();
@@ -35,7 +35,7 @@ public class DebugUI : MonoBehaviour
         GUILayout.Label("Mode: " + mode);
     }
 
-    static void SubmitNewPosition(Vector3 direction, ForceMode mode = ForceMode.Force) {
+    static void DirectionalMovement(Vector3 direction, ForceMode mode = ForceMode.Force) {
         if (GUILayout.Button(NetworkManager.Singleton.IsServer ? "Move" : "Request Position Change")) {
             if (NetworkManager.Singleton.IsServer && !NetworkManager.Singleton.IsClient ) {
                 foreach (ulong uid in NetworkManager.Singleton.ConnectedClientsIds)
