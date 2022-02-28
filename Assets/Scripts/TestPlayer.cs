@@ -27,7 +27,7 @@ namespace base_movement
         
 
         // Used to determine if player is playing from a client or a host
-        private const bool isServer = NetworkManager.Singleton.isServer;
+        // const bool IS_SERVER = NetworkManager.Singleton.isServer;
 
         /*** Testing Gravity changes but might still use later
         public float gravityScale;
@@ -162,16 +162,16 @@ namespace base_movement
             Debug.Log("Grounded");
         }
 
-        void PlayerForce(Vector3 direction, ForceMode mode = ForceMode.Force) {
-            if(isServer) {
+        public void PlayerForce(Vector3 direction, ForceMode mode = ForceMode.Force) {
+            if(true) {
                 rb.AddForce(direction, mode);
             } else {
-                RequestPlayerForce(direction, mode);
+                RequestPlayerForceServerRpc(direction, mode);
             }
         }
 
         [ServerRpc]
-        void RequestPlayerForce(Vector3 direction, ForceMode mode) {
+        void RequestPlayerForceServerRpc(Vector3 direction, ForceMode mode) {
             rb.AddForce(direction, mode);
         }
     }
