@@ -64,7 +64,7 @@ namespace base_movement
                 //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
 
                 //changed to force
-                PlayerForce(Vector3.forward * activeMovementSpeed);
+                GetComponent<Rigidbody>().AddForce(Vector3.forward * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
 
@@ -73,7 +73,7 @@ namespace base_movement
                 //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
 
                 //changed to force
-                PlayerForce(Vector3.back * activeMovementSpeed);
+                GetComponent<Rigidbody>().AddForce(Vector3.back * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
 
@@ -117,7 +117,7 @@ namespace base_movement
             {
                 if (remainingJumps > 0)
                 {
-                    PlayerForce(Vector3.up * jumpAmount, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(Vector3.up * jumpAmount, ForceMode.Impulse);
                     remainingJumps--;
                     isGrounded = false;
                 }
