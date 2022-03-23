@@ -205,15 +205,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6285086265129576064, guid: ac1ec07cb46ecca4d9bc4da105682eee, type: 3}
       propertyPath: jumpAmount
-      value: 10
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 6285086265129576064, guid: ac1ec07cb46ecca4d9bc4da105682eee, type: 3}
       propertyPath: dashCooldown
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6285086265129576064, guid: ac1ec07cb46ecca4d9bc4da105682eee, type: 3}
+      propertyPath: movementSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285086265129576064, guid: ac1ec07cb46ecca4d9bc4da105682eee, type: 3}
+      propertyPath: maxMovementSpeed
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 6285086265129576064, guid: ac1ec07cb46ecca4d9bc4da105682eee, type: 3}
       propertyPath: fallingGravityScale
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 9012516910876991525, guid: ac1ec07cb46ecca4d9bc4da105682eee, type: 3}
       propertyPath: m_Name
