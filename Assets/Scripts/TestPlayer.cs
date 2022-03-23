@@ -1,3 +1,4 @@
+using CameraMovement;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -150,8 +151,11 @@ namespace base_movement
                 
             }
 
+            /***    Camera Movement    ***/
+            if (IsOwner) {
+                CameraFollow.ClientPlayer = this.transform;
+            }
 
-            
             //Testing out gravity changes here but did not work as planned so scrapping for now
             //Vector3 gravity = globalGravity * gravityScale * Vector3.up;
             //PlayerForce(gravity, ForceMode.Acceleration);
