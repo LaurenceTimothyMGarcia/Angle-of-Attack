@@ -66,12 +66,12 @@ namespace base_movement
                 //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
 
                 //changed to force
-                GetComponent<Rigidbody>().AddForce(Vector3.forward * activeMovementSpeed);
+                rb.AddForce(Vector3.forward * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
                 //Cap velocity
-                if (GetComponent<Rigidbody>().velocity.magnitude >  maxMovementSpeed)
+                if (rb.velocity.magnitude >  maxMovementSpeed)
                 {
-                    GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(GetComponent<Rigidbody>().velocity, maxMovementSpeed);
+                    rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxMovementSpeed);
                 }
             }
 
@@ -80,12 +80,12 @@ namespace base_movement
                 //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
 
                 //changed to force
-                GetComponent<Rigidbody>().AddForce(Vector3.back * activeMovementSpeed);
+                rb.AddForce(Vector3.back * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
                 //Cap velocity
-                if (GetComponent<Rigidbody>().velocity.magnitude >  maxMovementSpeed)
+                if (rb.velocity.magnitude >  maxMovementSpeed)
                 {
-                    GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(GetComponent<Rigidbody>().velocity, maxMovementSpeed);
+                    rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxMovementSpeed);
                 }
             }
 
@@ -129,7 +129,7 @@ namespace base_movement
             {
                 if (remainingJumps > 0)
                 {
-                    GetComponent<Rigidbody>().velocity = Vector3.up * jumpAmount;
+                    rb.velocity = Vector3.up * jumpAmount;
                     remainingJumps--;
                     isGrounded = false;
                 }
@@ -143,10 +143,10 @@ namespace base_movement
             //makes falling down faster than going up
             if (rb.velocity.y < 0)
             {
-                GetComponent<Rigidbody>().AddForce(Vector3.down * fallingGravityScale, ForceMode.Acceleration);
-                // if (GetComponent<Rigidbody>().velocity.magnitude >  maxMovementSpeed)
+                rb.AddForce(Vector3.down * fallingGravityScale, ForceMode.Acceleration);
+                // if (rb.velocity.magnitude >  maxMovementSpeed)
                 // {
-                //     GetComponent<Rigidbody>().velocity = Vector3.ClampMagnitude(GetComponent<Rigidbody>().velocity, maxMovementSpeed);
+                //     rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxMovementSpeed);
                 // }
                 
             }
