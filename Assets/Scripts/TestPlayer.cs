@@ -60,6 +60,12 @@ namespace base_movement
                 return;
             }
 
+            //Cap velocity
+            if (rb.velocity.magnitude >  maxMovementSpeed)
+            {
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxMovementSpeed);
+            }
+
             /***    Movement Horizontal    ***/
             if (VirtualInputManager.Instance.moveRight)
             {
@@ -68,11 +74,6 @@ namespace base_movement
                 //changed to force
                 rb.AddForce(Vector3.forward * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-                //Cap velocity
-                if (rb.velocity.magnitude >  maxMovementSpeed)
-                {
-                    rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxMovementSpeed);
-                }
             }
 
             if (VirtualInputManager.Instance.moveLeft)
@@ -82,11 +83,7 @@ namespace base_movement
                 //changed to force
                 rb.AddForce(Vector3.back * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-                //Cap velocity
-                if (rb.velocity.magnitude >  maxMovementSpeed)
-                {
-                    rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxMovementSpeed);
-                }
+   
             }
 
             /***    Dash    ***/
