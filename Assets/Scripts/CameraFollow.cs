@@ -4,11 +4,13 @@ namespace CameraMovement {
     public class CameraFollow : MonoBehaviour
     {
         public static Transform ClientPlayer;
-        public static bool followVelocity = false; // very buggy for now
         public float smoothSpeed = 0.125f;
         public Vector3 offset;
 
         private Vector3 pos = Vector3.zero;
+        private static float standardFov = 60f;
+        private static float velocityCamOffsetSensetivity = 10f;
+        private static float velocityFovSensetivity = 2f;
 
         void AimCamera(Transform target = null) {
             if(target == null) {
@@ -20,15 +22,14 @@ namespace CameraMovement {
 
             Vector3 desiredPosition = target.position + offset;
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
+            Vector3 velocity = ClientPlayer.GetComponent<Rigidbody>().velocity;
             
             transform.position = smoothedPosition;
+            transform.LookAt(target.transform.position + velocity / velocityCamOffsetSensetivity);
 
-            if(followVelocity) {
-                transform.LookAt(target.position + (target.position - pos)/Time.deltaTime);
-                pos = target.position;
-            } else {
-                transform.LookAt(target);
-            }
+            // adjusts camera FOV
+            Camera.main.fieldOfView = standardFov + Mathf.Clamp(velocity.magnitude / velocityFovSensetivity, 0, standardFov/4f);
+            Debug.Log(Camera.main.fieldOfView);
         }
 
         // void LateUpdate() {

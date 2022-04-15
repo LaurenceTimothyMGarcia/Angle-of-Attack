@@ -36,7 +36,7 @@ namespace base_movement
         public static float globalGravity = -9.81f;
         ***/
 
-        public Rigidbody rb;
+        private Rigidbody rb;
 
         //happens on start
         void OnEnable()
@@ -46,6 +46,7 @@ namespace base_movement
 
         void Start()
         {
+            rb = this.gameObject.GetComponent<Rigidbody>();
             activeMovementSpeed = movementSpeed;
             remainingJumps = jumpCount;
             dashTimeCounter = dashTime;
