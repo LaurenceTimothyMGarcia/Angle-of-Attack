@@ -27,8 +27,8 @@ ExportedObj/
 *.VC.db
 
 # Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
+# *.pidb.meta
+# *.pdb.meta
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
@@ -479,9 +479,9 @@ ExportedObj/
 *.mdb
 
 # Unity3D generated meta files
-*.pidb.meta
-*.pdb.meta
-*.mdb.meta
+# *.pidb.meta
+# *.pdb.meta
+# *.mdb.meta
 
 # Unity3D generated file on crash reports
 sysinfo.txt
@@ -588,3 +588,4 @@ fabric.properties
 
 # User-added
 Assets/Scripts/.idea/
+UserSettings/*

@@ -6,6 +6,7 @@ namespace base_movement
 {
     public class TestPlayer : NetworkBehaviour
     {
+        public float maxMovementSpeed;
         public float movementSpeed;
         private float activeMovementSpeed;
         private float previousMovementSpeed;
@@ -21,7 +22,7 @@ namespace base_movement
         private Vector3 tempVelocity; //speed Before the dash
         
         //Jump related
-        public float jumpAmount;
+        public float jumpAmount; // jump velocity
         public int jumpCount;   //Extra Jumps
         public float fallingGravityScale;
         private int remainingJumps;
@@ -36,7 +37,7 @@ namespace base_movement
         public static float globalGravity = -9.81f;
         ***/
 
-        public Rigidbody rb;
+        private Rigidbody rb;
 
         //happens on start
         void OnEnable()
@@ -46,6 +47,7 @@ namespace base_movement
 
         void Start()
         {
+            rb = this.gameObject.GetComponent<Rigidbody>();
             activeMovementSpeed = movementSpeed;
             remainingJumps = jumpCount;
             dashTimeCounter = dashTime;
@@ -59,13 +61,19 @@ namespace base_movement
                 return;
             }
 
+            //Cap velocity
+            if (rb.velocity.magnitude >  maxMovementSpeed)
+            {
+                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxMovementSpeed);
+            }
+
             /***    Movement Horizontal    ***/
             if (VirtualInputManager.Instance.moveRight)
             {
                 //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
 
                 //changed to force
-                PlayerForce(Vector3.forward * activeMovementSpeed);
+                rb.AddForce(Vector3.forward * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
 
@@ -74,8 +82,9 @@ namespace base_movement
                 //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
 
                 //changed to force
-                PlayerForce(Vector3.back * activeMovementSpeed);
+                rb.AddForce(Vector3.back * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+   
             }
 
             /***    Dash    ***/
@@ -118,7 +127,7 @@ namespace base_movement
             {
                 if (remainingJumps > 0)
                 {
-                    PlayerForce(Vector3.up * jumpAmount, ForceMode.Impulse);
+                    rb.velocity = Vector3.up * jumpAmount;
                     remainingJumps--;
                     isGrounded = false;
                 }
@@ -132,7 +141,12 @@ namespace base_movement
             //makes falling down faster than going up
             if (rb.velocity.y < 0)
             {
-                PlayerForce(Vector3.down * fallingGravityScale, ForceMode.Acceleration);
+                rb.AddForce(Vector3.down * fallingGravityScale, ForceMode.Acceleration);
+                // if (rb.velocity.magnitude >  maxMovementSpeed)
+                // {
+                //     rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxMovementSpeed);
+                // }
+                
             }
 
             /***    Camera Movement    ***/
