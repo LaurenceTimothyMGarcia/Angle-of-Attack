@@ -149,7 +149,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 462005353}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 817601fd036c8470daa4e419991cd201, type: 3}
+  m_Script: {fileID: 11500000, guid: ef09de6079793c542afe2219a1cc1e80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &462005355
@@ -338,14 +338,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalRotation: {x: 0.0861746, y: -0.70183617, z: 0.0861746, w: 0.70183617}
+  m_LocalPosition: {x: 10, y: 3.5, z: 1.35}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 14, y: -90, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -355,11 +355,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 963194225}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f36ae9256d50d4281897eba40daa2ad5, type: 3}
+  m_Script: {fileID: 11500000, guid: b9d44f89e6465c04da27d5a78fd0213c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   smoothSpeed: 0.125
-  offset: {x: 10, y: 0, z: 0}
+  offset: {x: 10, y: 2.5, z: 0}
 --- !u!1 &968395761
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,13 +414,13 @@ MonoBehaviour:
   NetworkConfig:
     ProtocolVersion: 0
     NetworkTransport: {fileID: 968395762}
-    PlayerPrefab: {fileID: 9012516910876991525, guid: 3237619b9eb354e76a146f6f8d01563f, type: 3}
+    PlayerPrefab: {fileID: 9012516910876991525, guid: 1bb1efa6c727e004ab0e40df4fcf69cd, type: 3}
     NetworkPrefabs:
     - Override: 1
       Prefab: {fileID: 9012516910876991525, guid: 3237619b9eb354e76a146f6f8d01563f, type: 3}
-      SourcePrefabToOverride: {fileID: 9012516910876991525, guid: 3237619b9eb354e76a146f6f8d01563f, type: 3}
+      SourcePrefabToOverride: {fileID: 9012516910876991525, guid: 1bb1efa6c727e004ab0e40df4fcf69cd, type: 3}
       SourceHashToOverride: 0
-      OverridingTargetPrefab: {fileID: 9012516910876991525, guid: 3237619b9eb354e76a146f6f8d01563f, type: 3}
+      OverridingTargetPrefab: {fileID: 9012516910876991525, guid: 1bb1efa6c727e004ab0e40df4fcf69cd, type: 3}
     TickRate: 30
     ClientConnectionBufferTimeout: 10
     ConnectionApproval: 0
@@ -628,7 +628,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7397965507574521251, guid: a5d5775f8359a9742b6cef398f2cea0b, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7397965507574521251, guid: a5d5775f8359a9742b6cef398f2cea0b, type: 3}
       propertyPath: m_LocalPosition.x

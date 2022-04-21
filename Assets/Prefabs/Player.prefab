@@ -186,6 +186,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af7247eed2f51194380a267fa8ab76e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxMovementSpeed: 100
   movementSpeed: 10
   dashSpeed: 50
   dashTime: 0
@@ -194,4 +195,3 @@ MonoBehaviour:
   jumpAmount: 0
   jumpCount: 0
   fallingGravityScale: 0
-  rb: {fileID: 0}
