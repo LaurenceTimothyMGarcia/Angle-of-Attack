@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace base_movement
 {
-    public class TestPlayer : MonoBehaviour
+    public class TestPlayer : NetworkBehaviour
     {
         public float movementSpeed;
         private float activeMovementSpeed;
@@ -26,6 +25,8 @@ namespace base_movement
         public float fallingGravityScale;
         private int remainingJumps;
         private bool isGrounded;
+
+        // private const bool isServer = singleton.isServer;
         
 
         /*** Testing Gravity changes but might still use later
@@ -63,7 +64,7 @@ namespace base_movement
                 //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
 
                 //changed to force
-                rb.AddForce(Vector3.forward * activeMovementSpeed);
+                PlayerForce(Vector3.forward * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 0f, 0f);
             }
 
@@ -72,11 +73,12 @@ namespace base_movement
                 //this.gameObject.transform.Translate(Vector3.forward * movementSpeed * Time.deltaTime);
 
                 //changed to force
-                rb.AddForce(Vector3.back * activeMovementSpeed);
+                PlayerForce(Vector3.back * activeMovementSpeed);
                 this.gameObject.transform.rotation = Quaternion.Euler(0f, 180f, 0f);
             }
 
             /***    Dash    ***/
+            // TODO-RAY Will need to make networked method for assigning rigidbody velocity
             if (VirtualInputManager.Instance.dash && dashCoolCounter <= 0)
             {
                 tempVelocity = rb.velocity;
@@ -115,12 +117,10 @@ namespace base_movement
             {
                 if (remainingJumps > 0)
                 {
-                    rb.AddForce(Vector3.up * jumpAmount, ForceMode.Impulse);
+                    PlayerForce(Vector3.up * jumpAmount, ForceMode.Impulse);
                     remainingJumps--;
                     isGrounded = false;
                 }
-
-                Debug.Log(remainingJumps);
             }
 
             if (isGrounded)
@@ -131,14 +131,14 @@ namespace base_movement
             //makes falling down faster than going up
             if (rb.velocity.y < 0)
             {
-                rb.AddForce(Vector3.down * fallingGravityScale, ForceMode.Acceleration);
+                PlayerForce(Vector3.down * fallingGravityScale, ForceMode.Acceleration);
             }
 
 
             
             //Testing out gravity changes here but did not work as planned so scrapping for now
             //Vector3 gravity = globalGravity * gravityScale * Vector3.up;
-            //rb.AddForce(gravity, ForceMode.Acceleration);
+            //PlayerForce(gravity, ForceMode.Acceleration);
             /*if (rb.velocity.y >= 0)
             {
                 gravity = globalGravity * gravityScale * Vector3.up;
@@ -153,7 +153,21 @@ namespace base_movement
         void OnCollisionStay()
         {
             isGrounded = true;
-            Debug.Log("Grounded");
+        }
+
+        public void PlayerForce(Vector3 direction, ForceMode mode = ForceMode.Force) {
+            if(IsOwner) {
+                if(NetworkManager.Singleton.IsServer) {
+                    rb.AddForce(direction, mode);
+                } else {
+                    RequestPlayerForceServerRpc(direction, mode);
+                }
+            }
+        }
+
+        [ServerRpc]
+        void RequestPlayerForceServerRpc(Vector3 direction, ForceMode mode) {
+            rb.AddForce(direction, mode);
         }
     }
 }

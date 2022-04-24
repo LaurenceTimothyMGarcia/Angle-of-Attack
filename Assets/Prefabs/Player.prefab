@@ -110,8 +110,10 @@ GameObject:
   - component: {fileID: 9012516910876991544}
   - component: {fileID: 9012516910876991527}
   - component: {fileID: 9012516910876991526}
-  - component: {fileID: 2598423845933659316}
-  - component: {fileID: 5022502601794356015}
+  - component: {fileID: 8174810631611607381}
+  - component: {fileID: -7116775253761212426}
+  - component: {fileID: -4939192660739127286}
+  - component: {fileID: 1030843413765116563}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -127,7 +129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9012516910876991525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.7673328, y: 0.5768523, z: 0.21334624}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -215,7 +217,28 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!54 &2598423845933659316
+--- !u!114 &8174810631611607381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9012516910876991525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7828a853e3b864481a551f94d9d20fcf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 25
+  dashSpeed: 10
+  dashTime: 1
+  dashCooldown: 1
+  dashLength: 5
+  jumpAmount: 10
+  jumpCount: 1
+  fallingGravityScale: 1
+  rb: {fileID: -7116775253761212426}
+--- !u!54 &-7116775253761212426
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -240,15 +263,33 @@ MonoBehaviour:
   m_GameObject: {fileID: 9012516910876991525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6551ae5234bbb5b439e25091977d4871, type: 3}
+  m_Script: {fileID: 11500000, guid: e96cb6065543e43c4a752faaa1468eb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeed: 10
-  dashSpeed: 50
-  dashTime: 0.1
-  dashCooldown: 2
-  dashLength: 0.5
-  jumpAmount: 10
-  jumpCount: 1
-  fallingGravityScale: 20
-  rb: {fileID: 2598423845933659316}
+  SyncPositionX: 1
+  SyncPositionY: 1
+  SyncPositionZ: 1
+  SyncRotAngleX: 1
+  SyncRotAngleY: 1
+  SyncRotAngleZ: 1
+  SyncScaleX: 1
+  SyncScaleY: 1
+  SyncScaleZ: 1
+  PositionThreshold: 0.001
+  RotAngleThreshold: 0.01
+  ScaleThreshold: 0.01
+  InLocalSpace: 0
+  Interpolate: 1
+  CanCommitToTransform: 0
+--- !u!114 &1030843413765116563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9012516910876991525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
