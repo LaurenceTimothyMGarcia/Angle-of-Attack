@@ -19,6 +19,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0) {
             //you dead
+            GameManager.KillPlayer(gameObject);
             //anim.SetBool("", true);   //if you have a command for death animation
         }
     }

@@ -167,6 +167,14 @@ namespace base_movement
             }*/
         }
 
+        //calls TakeDamage method of receiver
+        public void DoDamage(float baseDamage, Collider2D reciever) {
+            float velocity = rb.velocity.magnitude;
+            //damage modifiers obviously not final
+            float damage = baseDamage + velocity * 0.4f;
+            reciever.GetComponent<PlayerHealth>().TakeDamage(damage);
+        }
+
         //Checks if player is on ground
         void OnCollisionStay()
         {
