@@ -111,9 +111,9 @@ GameObject:
   - component: {fileID: 9012516910876991527}
   - component: {fileID: 9012516910876991526}
   - component: {fileID: -7116775253761212426}
-  - component: {fileID: -4939192660739127286}
   - component: {fileID: 1030843413765116563}
   - component: {fileID: 6285086265129576064}
+  - component: {fileID: 5022502601794356015}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -233,6 +233,40 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 80
   m_CollisionDetection: 3
+--- !u!114 &1030843413765116563
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9012516910876991525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6285086265129576064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9012516910876991525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7247eed2f51194380a267fa8ab76e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxMovementSpeed: 15
+  movementSpeed: 15
+  dashSpeed: 50
+  dashTime: 0.1
+  dashCooldown: 2
+  dashLength: 0.5
+  jumpAmount: 15
+  jumpCount: 10
+  fallingGravityScale: 10
+  rb: {fileID: -7116775253761212426}
 --- !u!114 &5022502601794356015
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -260,36 +294,3 @@ MonoBehaviour:
   InLocalSpace: 0
   Interpolate: 1
   CanCommitToTransform: 0
---- !u!114 &1030843413765116563
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9012516910876991525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &6285086265129576064
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9012516910876991525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: af7247eed2f51194380a267fa8ab76e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 10
-  dashSpeed: 50
-  dashTime: 0
-  dashCooldown: 0
-  dashLength: 0
-  jumpAmount: 0
-  jumpCount: 0
-  fallingGravityScale: 0
-  rb: {fileID: 0}
