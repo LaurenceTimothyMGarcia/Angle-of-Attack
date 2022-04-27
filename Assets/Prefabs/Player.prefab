@@ -110,10 +110,10 @@ GameObject:
   - component: {fileID: 9012516910876991544}
   - component: {fileID: 9012516910876991527}
   - component: {fileID: 9012516910876991526}
-  - component: {fileID: 8174810631611607381}
   - component: {fileID: -7116775253761212426}
   - component: {fileID: -4939192660739127286}
   - component: {fileID: 1030843413765116563}
+  - component: {fileID: 6285086265129576064}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -129,7 +129,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9012516910876991525}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0.39, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -217,27 +217,6 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &8174810631611607381
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9012516910876991525}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7828a853e3b864481a551f94d9d20fcf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementSpeed: 25
-  dashSpeed: 10
-  dashTime: 1
-  dashCooldown: 1
-  dashLength: 5
-  jumpAmount: 10
-  jumpCount: 1
-  fallingGravityScale: 1
-  rb: {fileID: -7116775253761212426}
 --- !u!54 &-7116775253761212426
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -293,3 +272,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6285086265129576064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9012516910876991525}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af7247eed2f51194380a267fa8ab76e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementSpeed: 10
+  dashSpeed: 50
+  dashTime: 0
+  dashCooldown: 0
+  dashLength: 0
+  jumpAmount: 0
+  jumpCount: 0
+  fallingGravityScale: 0
+  rb: {fileID: 0}
