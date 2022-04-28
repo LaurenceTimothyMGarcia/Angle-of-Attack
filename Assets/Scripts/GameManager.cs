@@ -8,7 +8,7 @@ using UnityEngine;
 /// as respawning and pausing
 /// </summary>
 
-public class GameManager : NetworkBehaviour
+public class GameManager : MonoBehaviour
 {
 
     public static GameManager gm;
@@ -17,10 +17,11 @@ public class GameManager : NetworkBehaviour
     public Transform spawnPoint;
     public int spawnDelay;
 
-    
     void Start()
     {
-        
+        if (gm == null) {
+            gm = GameObject.Find("GM").GetComponent<GameManager>();
+        }
     }
 
 
@@ -29,17 +30,16 @@ public class GameManager : NetworkBehaviour
         
     }
 
-    //name will be used when multiple prefabs available
-    public IEnumerator _RespawnPlayer(string name) {
+    //name will be used when there are multiple prefabs/characters to choose from
+    private IEnumerator _RespawnHelper(string name) {
         yield return new WaitForSeconds(spawnDelay);
         Transform clone = Instantiate(playerPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 
-    public static void KillPlayer(GameObject player) {
-        //string name = player.name;
-        //NetworkManager.Destroy(player);
-        //Transform clone = NetworkManager.Instantiate(gm.playerPrefab, gm.spawnPoint.position, gm.spawnPoint.rotation);
-        //gm.StartCoroutine(gm._RespawnPlayer(name));
-        //Still getting this to work :^((((((
+    public static void RespawnPlayer(GameObject player) {
+        string name = player.name;
+        Destroy(player);
+        gm.StartCoroutine(gm._RespawnHelper(name));
+        
     }
 }

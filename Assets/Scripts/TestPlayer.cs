@@ -168,7 +168,7 @@ namespace base_movement
         }
 
         //calls TakeDamage method of receiver
-        public void DoDamage(float baseDamage, Collider2D reciever) {
+        public void DoDamage(float baseDamage, Collider reciever) {
             float velocity = rb.velocity.magnitude;
             //damage modifiers obviously not final
             float damage = baseDamage + velocity * 0.4f;
