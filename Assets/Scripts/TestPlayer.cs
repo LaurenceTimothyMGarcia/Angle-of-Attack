@@ -55,6 +55,8 @@ namespace base_movement
         void Update()
         {
             //if both left and right pressed at same time
+            Debug.Log(VirtualInputManager.Instance.moveRight);
+            Debug.Log(VirtualInputManager.Instance.moveLeft);
             if (VirtualInputManager.Instance.moveRight && VirtualInputManager.Instance.moveLeft)
             {
                 return;
