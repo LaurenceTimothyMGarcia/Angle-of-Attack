@@ -67,6 +67,8 @@ namespace base_movement
                 rb.AddForce(Vector3.back * activeMovementSpeed);
             }
 
+            animator.SetFloat("Speed", movementSpeed);
+
 
             /*** Direction of character ***/
             //Character faces in direction of mouse
