@@ -100,20 +100,8 @@ namespace base_movement
             isGrounded = Physics.CheckSphere(groundCheckTransform.position, groundCheckRadius, groundMask, QueryTriggerInteraction.Ignore);
             animator.SetBool("isGrounded", isGrounded);
 
-
-            /*** Shooting ***/
-            if (VirtualInputManager.Instance.shoot)
-            {
-                Fire();
-            }
-        }
-
-        private void Fire()
-        {
-            var go = Instantiate(bulletPrefab);
-            go.transform.position = shootPoint.position;
-            var bullet = go.GetComponent<Bullet>();
-            bullet.Fire(go.transform.position, shootPoint.eulerAngles, gameObject.layer);
+            /*** SHOOTING ***/
+            
         }
 
         private void OnAnimatorIK()
