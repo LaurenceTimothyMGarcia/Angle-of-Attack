@@ -55,6 +55,16 @@ namespace base_movement
             {
                 VirtualInputManager.Instance.dash = false;
             }
+
+            //Shoot
+            if (Input.GetMouseButtonDown(0))
+            {
+                VirtualInputManager.Instance.shoot = true;
+            }
+            else
+            {
+                VirtualInputManager.Instance.shoot = false;
+            }
         }
     }
 }

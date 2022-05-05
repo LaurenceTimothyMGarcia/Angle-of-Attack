@@ -18,6 +18,9 @@ namespace base_movement
 
         public Transform targetTransform;
 
+        public GameObject bulletPrefab;
+        public Transform shootPoint;
+
         private float inputMovement;
         private Animator animator;
         private Rigidbody rb;
@@ -96,6 +99,21 @@ namespace base_movement
             //Ground Check
             isGrounded = Physics.CheckSphere(groundCheckTransform.position, groundCheckRadius, groundMask, QueryTriggerInteraction.Ignore);
             animator.SetBool("isGrounded", isGrounded);
+
+
+            /*** Shooting ***/
+            if (VirtualInputManager.Instance.shoot)
+            {
+                Fire();
+            }
+        }
+
+        private void Fire()
+        {
+            var go = Instantiate(bulletPrefab);
+            go.transform.position = shootPoint.position;
+            var bullet = go.GetComponent<Bullet>();
+            bullet.Fire(go.transform.position, shootPoint.eulerAngles, gameObject.layer);
         }
 
         private void OnAnimatorIK()
