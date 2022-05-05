@@ -101,7 +101,15 @@ namespace base_movement
             animator.SetBool("isGrounded", isGrounded);
 
             /*** SHOOTING ***/
-            
+            if (VirtualInputManager.Instance.shoot)
+            {
+                Fire();
+            }
+        }
+
+        void Fire()
+        {
+            Instantiate(bulletPrefab, shootPoint.position, shootPoint.rotation);
         }
 
         private void OnAnimatorIK()
