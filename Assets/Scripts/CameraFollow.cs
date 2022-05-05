@@ -22,7 +22,7 @@ namespace CameraMovement {
 
             Vector3 desiredPosition = target.position + offset;
             Vector3 smoothedPosition = Vector3.Lerp(transform.position, desiredPosition, smoothSpeed);
-            Vector3 velocity = ClientPlayer.GetComponent<Rigidbody>().velocity;
+            Vector3 velocity = target.GetComponent<Rigidbody>().velocity;
             
             transform.position = smoothedPosition;
             transform.LookAt(target.transform.position + velocity / velocityCamOffsetSensetivity);
