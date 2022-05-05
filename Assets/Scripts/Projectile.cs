@@ -19,22 +19,19 @@ public LayerMask whatIsSolid;
     // Update is called once per frame
     void Update()
     {
-	RaycastHit hitInfo;
+		RaycastHit hitInfo;
 
-	if(Physics.Raycast(transform.position, transform.up, out hitInfo, distance, whatIsSolid))
-	{
-		if(hitInfo.collider.CompareTag("Enemy")) Debug.Log("Enemy has been hit!");
-		DestroyProjectile();
+		if(Physics.Raycast(transform.position, transform.up, out hitInfo, distance, whatIsSolid))
+		{
+			if(hitInfo.collider.CompareTag("Enemy")) Debug.Log("Enemy has been hit!");
+			DestroyProjectile();
+		}
 
-	}
-
-	transform.Translate(Vector2.up * speed * Time.deltaTime);        
+		transform.Translate(Vector2.up * speed * Time.deltaTime);        
     }
 
-void DestroyProjectile()
-{
-	Destroy(gameObject);
-
-}
-
+	void DestroyProjectile()
+	{
+		Destroy(gameObject);
+	}
 }
