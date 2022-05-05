@@ -26,6 +26,7 @@ namespace base_movement
         public bool jump;
         public bool run;
         public bool dash;
+        public bool shoot;
     }
 }
 
