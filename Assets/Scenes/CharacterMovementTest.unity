@@ -354,6 +354,9 @@ MonoBehaviour:
   groundCheckTransform: {fileID: 1915616239}
   groundCheckRadius: 0.2
   targetTransform: {fileID: 1541866936}
+  groundMask:
+    serializedVersion: 2
+    m_Bits: 128
   mouseAimMask:
     serializedVersion: 2
     m_Bits: 64
@@ -688,7 +691,7 @@ GameObject:
   - component: {fileID: 639629342}
   - component: {fileID: 639629341}
   - component: {fileID: 639629340}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Plane
   m_TagString: Untagged
   m_Icon: {fileID: 0}

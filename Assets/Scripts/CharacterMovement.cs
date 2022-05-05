@@ -22,6 +22,7 @@ namespace base_movement
         private Animator animator;
         private Rigidbody rb;
         private bool isGrounded;
+        public LayerMask groundMask;
 
         //Check if looking left or right
         private int facingSign
@@ -86,11 +87,26 @@ namespace base_movement
             rb.MoveRotation(Quaternion.Euler(new Vector3(0, 90 * Mathf.Sign(targetTransform.position.z - transform.position.z), 0)));
 
             /*** JUMPING ***/
-            if (VirtualInputManager.Instance.jump)
+            if (VirtualInputManager.Instance.jump && isGrounded)
             {
                 rb.velocity = new Vector3(rb.velocity.x, 0, 0);
                 rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -1 * Physics.gravity.y), ForceMode.VelocityChange);
             }
+
+            //Ground Check
+            isGrounded = Physics.CheckSphere(groundCheckTransform.position, groundCheckRadius, groundMask, QueryTriggerInteraction.Ignore);
+            animator.SetBool("isGrounded", isGrounded);
+        }
+
+        private void OnAnimatorIK()
+        {
+            //AIM AT TARGET IK
+            animator.SetIKPositionWeight(AvatarIKGoal.RightHand, 1);
+            animator.SetIKPosition(AvatarIKGoal.RightHand, targetTransform.position);
+
+            // Look at target IK
+            animator.SetLookAtWeight(1);
+            animator.SetLookAtPosition(targetTransform.position);
         }
     }
 }
