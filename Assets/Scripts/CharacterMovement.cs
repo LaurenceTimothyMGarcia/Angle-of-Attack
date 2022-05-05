@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 using CameraMovement;
 
 namespace base_movement
 {
-    public class CharacterMovement : MonoBehaviour
+    public class CharacterMovement : NetworkBehaviour
     {
         public float movementSpeed = 2.5f;
         public float maxMovementSpeed = 50f;
@@ -69,17 +70,17 @@ namespace base_movement
 
             if (rb.velocity.magnitude > maxMovementSpeed)
             {
-                rb.velocity = Vector3.ClampMagnitude(rb.velocity, maxMovementSpeed);
+                SetVelocity(Vector3.ClampMagnitude(rb.velocity, maxMovementSpeed));
             }
 
             if (VirtualInputManager.Instance.moveRight)
             {
-                rb.AddForce(Vector3.forward * activeMovementSpeed);
+                AddPlayerForce(Vector3.forward * activeMovementSpeed);
             }
 
             if (VirtualInputManager.Instance.moveLeft)
             {
-                rb.AddForce(Vector3.back * activeMovementSpeed);
+                AddPlayerForce(Vector3.back * activeMovementSpeed);
             }
 
             animator.SetFloat("Speed", rb.velocity.magnitude);
@@ -88,12 +89,13 @@ namespace base_movement
             /*** Direction of character ***/
             //Character faces in direction of mouse
             rb.MoveRotation(Quaternion.Euler(new Vector3(0, 90 * Mathf.Sign(targetTransform.position.z - transform.position.z), 0)));
+            // TODO-RAY figure out how the heck to network this
 
             /*** JUMPING ***/
             if (VirtualInputManager.Instance.jump && isGrounded)
             {
-                rb.velocity = new Vector3(rb.velocity.x, 0, 0);
-                rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -1 * Physics.gravity.y), ForceMode.VelocityChange);
+                SetVelocity(new Vector3(rb.velocity.x, 0, 0));
+                AddPlayerForce(Vector3.up * Mathf.Sqrt(jumpHeight * -1 * Physics.gravity.y), ForceMode.VelocityChange);
             }
 
             //Ground Check
@@ -121,6 +123,36 @@ namespace base_movement
             // Look at target IK
             animator.SetLookAtWeight(1);
             animator.SetLookAtPosition(targetTransform.position);
+        }
+
+        public void SetVelocity(Vector3 velocity) {
+            if(IsOwner) {
+                if(NetworkManager.Singleton.IsServer) {
+                    rb.velocity = velocity;
+                } else {
+                    SetVelocityServerRpc(velocity);
+                }
+            }
+        }
+
+        [ServerRpc]
+        void SetVelocityServerRpc(Vector3 velocity) {
+            rb.velocity = velocity;
+        }
+
+        public void AddPlayerForce(Vector3 direction, ForceMode mode = ForceMode.Force) {
+            if(IsOwner) {
+                if(NetworkManager.Singleton.IsServer) {
+                    rb.AddForce(direction, mode);
+                } else {
+                    AddPlayerForceServerRpc(direction, mode);
+                }
+            }
+        }
+
+        [ServerRpc]
+        void AddPlayerForceServerRpc(Vector3 direction, ForceMode mode) {
+            rb.AddForce(direction, mode);
         }
     }
 }
