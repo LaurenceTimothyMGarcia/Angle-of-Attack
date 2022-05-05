@@ -23,6 +23,17 @@ namespace base_movement
         private Rigidbody rb;
         private bool isGrounded;
 
+        //Check if looking left or right
+        private int facingSign
+        {
+            get
+            {
+                Vector3 perp = Vector3.Cross(transform.forward, Vector3.forward);
+                float dir = Vector3.Dot(perp, transform.up);
+                return dir > 0f ? -1 : dir < 0f ? 1 : 0;
+            }
+        }
+
         private Camera mainCamera;
         public LayerMask mouseAimMask;
 
@@ -67,12 +78,19 @@ namespace base_movement
                 rb.AddForce(Vector3.back * activeMovementSpeed);
             }
 
-            animator.SetFloat("Speed", movementSpeed);
+            animator.SetFloat("Speed", rb.velocity.magnitude);
 
 
             /*** Direction of character ***/
             //Character faces in direction of mouse
             rb.MoveRotation(Quaternion.Euler(new Vector3(0, 90 * Mathf.Sign(targetTransform.position.z - transform.position.z), 0)));
+
+            /*** JUMPING ***/
+            if (VirtualInputManager.Instance.jump)
+            {
+                rb.velocity = new Vector3(rb.velocity.x, 0, 0);
+                rb.AddForce(Vector3.up * Mathf.Sqrt(jumpHeight * -1 * Physics.gravity.y), ForceMode.VelocityChange);
+            }
         }
     }
 }
