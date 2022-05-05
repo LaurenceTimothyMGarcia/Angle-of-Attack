@@ -7,12 +7,12 @@ public class MainMenu : MonoBehaviour
 {
     public void Multiplayer()
     {
-        SceneManager.LoadScene("MultiplayerMode");
+        SceneManager.LoadScene("Map");
     }
 
     public void Showcase()
     {
-        SceneManager.LoadScene("ShowcaseMode");
+        SceneManager.LoadScene("Showcase");
     }
 
     public void QuitGame()
